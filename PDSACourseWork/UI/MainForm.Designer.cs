@@ -65,7 +65,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label3.Location = new System.Drawing.Point(703, 49);
+            this.label3.Location = new System.Drawing.Point(718, 49);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 15);
             this.label3.TabIndex = 4;
@@ -100,7 +100,7 @@
             this.ConnectorBtn.FlatAppearance.BorderSize = 0;
             this.ConnectorBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ConnectorBtn.ForeColor = System.Drawing.Color.Black;
-            this.ConnectorBtn.Location = new System.Drawing.Point(722, 0);
+            this.ConnectorBtn.Location = new System.Drawing.Point(738, 0);
             this.ConnectorBtn.Name = "ConnectorBtn";
             this.ConnectorBtn.Size = new System.Drawing.Size(50, 50);
             this.ConnectorBtn.TabIndex = 2;
