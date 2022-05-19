@@ -17,6 +17,11 @@ namespace PDSACourseWork.UI
             InitializeComponent();
         }
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            QueenBtn.Checked = false;
+        }
+
         private void QueenBtn_Click(object sender, EventArgs e)
         {
             MainForm mainForm = (MainForm)Application.OpenForms["MainForm"];

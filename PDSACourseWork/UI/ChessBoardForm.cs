@@ -1,13 +1,6 @@
-﻿using PDSACourseWork.Service;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data;
+using PDSACourseWork.Helper;
+using PDSACourseWork.Service;
 
 namespace PDSACourseWork.UI
 {
@@ -24,6 +17,8 @@ namespace PDSACourseWork.UI
 
         private void ChessBoardForm_Load(object sender, EventArgs e)
         {
+            StatusLabel.Visible = false;
+
             dt.Columns.Add("Possibilities", typeof(String));
 
             const int MaxN = 20;
@@ -216,6 +211,129 @@ namespace PDSACourseWork.UI
 
         #endregion
 
+        private void SubmitButton_Click(object sender, EventArgs e)
+        {
+            bool isCorrect = false;
+
+            string playerName = PlayerNameTextBox.Text;
+
+            if (count == 8)
+            {
+                if (!string.IsNullOrEmpty(playerName) && !string.IsNullOrWhiteSpace(playerName))
+                {
+                    List<string> possitionList = new();
+
+                    foreach (Control control in Controls)
+                    {
+                        if (control is CheckBox)
+                        {
+                            CheckBox checkbox = (CheckBox)control;
+
+                            if (checkbox.Checked == true)
+                            {
+                                possitionList.Add(checkbox.AccessibleName);
+                            }
+                        }
+                    }
+
+                    possitionList = possitionList.OrderBy(x => x).ToList();
+
+                    EightQueenService eightQueenService = new();
+                    List<string> allPossibilities = eightQueenService.GetAllPossibilities();
+
+                    isCorrect = EightQueenHelper.CompareLists(possitionList, allPossibilities);
+
+                    if (isCorrect == true)
+                    {
+                        List<string> winnerPossibilities = eightQueenService.GetWinnerPossibilities();
+
+                        if (winnerPossibilities.Count < 92)
+                        {
+                            bool isAnswerTaken = EightQueenHelper.CompareLists(possitionList, winnerPossibilities);
+
+                            if (isAnswerTaken == false)
+                            {
+                                StatusLabel.Text = "You are a winner!";
+                                StatusLabel.ForeColor = Color.FromArgb(46, 204, 113);
+                                StatusLabel.Visible = true;
+
+                                string answer = string.Empty;
+
+                                for (int i = 0; i < possitionList.Count; i++)
+                                {
+                                    answer += possitionList[i] + (i == 7 ? "" : "-");
+                                }
+
+                                int success = eightQueenService.SaveAnswer(PlayerNameTextBox.Text, answer);
+
+                                if (success > 0)
+                                {
+                                    MessageBox.Show("Answer save successfully!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                }
+                            }
+                            else
+                            {
+                                StatusLabel.Text = "Sorry answer already taken. \n Please try again!";
+                                StatusLabel.ForeColor = Color.FromArgb(142, 68, 173);
+                                StatusLabel.Visible = true;
+                            }
+                        }
+                        else
+                        {
+                            StatusLabel.Text = "You are a winner!";
+                            StatusLabel.ForeColor = Color.FromArgb(46, 204, 113);
+                            StatusLabel.Visible = true;
+
+                            string answer = string.Empty;
+
+                            for (int i = 0; i < possitionList.Count; i++)
+                            {
+                                answer += possitionList[i] + (i == 8 ? "" : "-");
+                            }
+
+                            int success = eightQueenService.SaveAnswer(PlayerNameTextBox.Text, answer);
+
+                            if (success > 0)
+                            {
+                                MessageBox.Show("Answer save successfully!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        StatusLabel.Text = "Wrong answer! Try again!";
+                        StatusLabel.ForeColor = Color.FromArgb(231, 76, 60);
+                        StatusLabel.Visible = true;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please provide a player name!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
+                
+            }
+            else
+            {
+                MessageBox.Show("Please place 8!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void TryAgainButton_Click(object sender, EventArgs e)
+        {
+            MainForm mainForm = (MainForm)Application.OpenForms["MainForm"];
+            Panel panel = (Panel)mainForm.Controls["ScreenPanel"];
+            panel.Controls.Clear();
+
+            var chessBoardForm = new ChessBoardForm
+            {
+                TopLevel = false
+            };
+
+            panel.Controls.Add(chessBoardForm);
+            chessBoardForm.Show();
+        }
+
         private void SetCheckBoxImage(CheckBox checkBox)
         {
             if (count < 8 || (count == 8 && checkBox.Checked == true))
@@ -319,6 +437,6 @@ namespace PDSACourseWork.UI
                     return true;
             }
             return false;
-        } 
+        }
     }
 }
