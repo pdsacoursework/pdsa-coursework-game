@@ -273,7 +273,7 @@ namespace PDSACourseWork.UI
                             }
                             else
                             {
-                                StatusLabel.Text = "Sorry answer already taken. \n Please try again!";
+                                StatusLabel.Text = "Answer already taken. \nPlease try again!";
                                 StatusLabel.ForeColor = Color.FromArgb(142, 68, 173);
                                 StatusLabel.Visible = true;
                             }

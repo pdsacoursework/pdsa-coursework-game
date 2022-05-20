@@ -1287,14 +1287,14 @@
             // 
             // StatusLabel
             // 
-            this.StatusLabel.AutoSize = true;
             this.StatusLabel.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.StatusLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            this.StatusLabel.Location = new System.Drawing.Point(404, 273);
+            this.StatusLabel.Location = new System.Drawing.Point(312, 273);
             this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(198, 32);
+            this.StatusLabel.Size = new System.Drawing.Size(374, 32);
             this.StatusLabel.TabIndex = 202;
             this.StatusLabel.Text = "You are a winner!";
+            this.StatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.StatusLabel.Visible = false;
             // 
             // ChessBoardForm

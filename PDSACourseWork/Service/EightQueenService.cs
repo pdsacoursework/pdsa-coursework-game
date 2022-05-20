@@ -12,7 +12,7 @@ namespace PDSACourseWork.Service
             {
                 using (SqlConnection con = new SqlConnection(DataConnection.ConnectionVal()))
                 {
-                    using (SqlCommand sqlCommand = new("usp_InsertPossibilities", con))
+                    using (SqlCommand sqlCommand = new("usp_InsertEightQueenPossibilities", con))
                     {
                         con.Open();
 
@@ -39,7 +39,7 @@ namespace PDSACourseWork.Service
 
                 using (SqlConnection con = new SqlConnection(DataConnection.ConnectionVal()))
                 {
-                    using (SqlCommand sqlCommand = new("usp_GetAllPossibilities", con))
+                    using (SqlCommand sqlCommand = new("usp_GetAllEightQueenPossibilities", con))
                     {
                         sqlCommand.CommandType = CommandType.StoredProcedure;
 
@@ -73,7 +73,7 @@ namespace PDSACourseWork.Service
 
                 using (SqlConnection con = new SqlConnection(DataConnection.ConnectionVal()))
                 {
-                    using (SqlCommand sqlCommand = new("usp_GetAllWinnerPossibilities", con))
+                    using (SqlCommand sqlCommand = new("usp_GetAllEightQueenWinnerPossibilities", con))
                     {
                         sqlCommand.CommandType = CommandType.StoredProcedure;
 
@@ -83,7 +83,7 @@ namespace PDSACourseWork.Service
 
                         while (reader.Read())
                         {
-                            possibilities.Add(reader["Possibility"].ToString());
+                            possibilities.Add(reader["Answer"].ToString());
                         }
 
                         con.Close();
@@ -105,12 +105,12 @@ namespace PDSACourseWork.Service
             {
                 using (SqlConnection con = new SqlConnection(DataConnection.ConnectionVal()))
                 {
-                    using (SqlCommand sqlCommand = new("usp_InsertWinnerAnswer", con))
+                    using (SqlCommand sqlCommand = new("usp_InsertEightQueenWinnerAnswer", con))
                     {
                         con.Open();
 
                         sqlCommand.CommandType = CommandType.StoredProcedure;
-                        sqlCommand.Parameters.AddWithValue("@userName", name);
+                        sqlCommand.Parameters.AddWithValue("@playerName", name);
                         sqlCommand.Parameters.AddWithValue("@answer", answer);
 
                         return sqlCommand.ExecuteNonQuery();

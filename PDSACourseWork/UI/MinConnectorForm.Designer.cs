@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.labelSelectedCity = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -45,20 +44,11 @@
             this.button3 = new System.Windows.Forms.Button();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.GameTitleLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(467, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(396, 51);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Min Connector Screen";
             // 
             // dataGridView1
             // 
@@ -244,6 +234,17 @@
             this.label7.TabIndex = 17;
             this.label7.Text = "Player Name: ";
             // 
+            // GameTitleLabel
+            // 
+            this.GameTitleLabel.AutoSize = true;
+            this.GameTitleLabel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.GameTitleLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.GameTitleLabel.Location = new System.Drawing.Point(47, 10);
+            this.GameTitleLabel.Name = "GameTitleLabel";
+            this.GameTitleLabel.Size = new System.Drawing.Size(264, 30);
+            this.GameTitleLabel.TabIndex = 18;
+            this.GameTitleLabel.Text = "Minimum Connector Game";
+            // 
             // MinConnectorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -251,6 +252,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(219)))), ((int)(((byte)(221)))));
             this.ClientSize = new System.Drawing.Size(1264, 800);
+            this.Controls.Add(this.GameTitleLabel);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.button3);
@@ -267,7 +269,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.labelSelectedCity);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MinConnectorForm";
             this.Text = "MinConnectorForm";
@@ -281,8 +282,6 @@
         }
 
         #endregion
-
-        private Label label1;
         private DataGridView dataGridView1;
         private Label labelSelectedCity;
         private Label label3;
@@ -299,5 +298,6 @@
         private Button button3;
         private TextBox txtName;
         private Label label7;
+        private Label GameTitleLabel;
     }
 }
