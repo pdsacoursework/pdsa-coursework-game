@@ -125,6 +125,7 @@
             this.ShortPathBtn.TabStop = true;
             this.ShortPathBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.ShortPathBtn.UseVisualStyleBackColor = false;
+            this.ShortPathBtn.CheckedChanged += new System.EventHandler(this.ShortPathBtn_CheckedChanged);
             this.ShortPathBtn.Click += new System.EventHandler(this.ShortPathBtn_Click);
             // 
             // QueenBtn

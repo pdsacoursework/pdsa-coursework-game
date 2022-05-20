@@ -194,9 +194,11 @@ namespace PDSACourseWork.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //selected cities must be different
             if(comboBox1.SelectedItem == comboBox2.SelectedItem)
             {
-                MessageBox.Show("Please re-check the 2 cities");
+                
+                MessageBox.Show("Please re-check the 2 cities", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
@@ -230,10 +232,11 @@ namespace PDSACourseWork.UI
             Prim(disArray, V, selectedCity);
 
             //label6.Text = dataGridView3.Rows[0].Cells[0].Value.ToString();
-
+            //must have the name of game player
             if(txtName.Text == "")
             {
-                MessageBox.Show("Please enter the player name");
+                
+                MessageBox.Show("Please enter the player name", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
@@ -258,7 +261,8 @@ namespace PDSACourseWork.UI
                     }
                     if (status == 0)
                     {
-                        MessageBox.Show("Submitted Anwser is Wrong");
+                       
+                        MessageBox.Show("Submitted Anwser is Wrong", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         dataGridView3.Visible = true;
                         label6.Visible = true;
 
@@ -278,8 +282,8 @@ namespace PDSACourseWork.UI
                         {
                             minConnectorService.InsertWinnerConnectorPaths(dataGridView3.Rows[x].Cells[0].Value.ToString(), dataGridView3.Rows[x].Cells[1].Value.ToString(), Int16.Parse(dataGridView3.Rows[x].Cells[2].Value.ToString()));
                         }
-
-                        MessageBox.Show("Answer is Correct");
+                        MessageBox.Show("Answer is Correct", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //MessageBox.Show("Answer is Correct");
                         //InsertWinnerConnectorPaths
 
                         button2.Enabled = false;
@@ -287,7 +291,7 @@ namespace PDSACourseWork.UI
                 }
                 else
                 {
-                    MessageBox.Show("Submitted Anwser is Wrong");
+                    MessageBox.Show("Submitted Anwser is Wrong", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     dataGridView3.Visible = true;
                     label6.Visible = true;
 
