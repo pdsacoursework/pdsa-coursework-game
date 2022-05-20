@@ -22,38 +22,24 @@ namespace PDSACourseWork.UI
 
             int INF = 9999999;
 
-            int no_edge; // number of edge
+            int no_edge; 
 
-            // create a array to track selected vertex
-            // selected will become true otherwise false
             bool[] selected = new bool[V];
 
-            // set selected false initially
             Array.Fill(selected, false);
 
-            // set number of edge to 0
             no_edge = 0;
 
-            // the number of egde in minimum spanning tree will be
-            // always less than (V -1), where V is number of vertices in
-            // graph
-
-            // choose 0th vertex and make it true
             selected[startCity] = true;
 
-            // print for edge and weight
             Console.WriteLine("Edge : Weight");
 
             while (no_edge < V - 1)
             {
-                // For every vertex in the set S, find the all adjacent vertices
-                // , calculate the distance from the vertex selected at step 1.
-                // if the vertex is already in the set S, discard it otherwise
-                // choose another vertex nearest to selected vertex at step 1.
 
                 int min = INF;
-                int x = 0; // row number
-                int y = 0; // col number
+                int x = 0;
+                int y = 0;
 
                 for (int i = 0; i < V; i++)
                 {
@@ -61,7 +47,7 @@ namespace PDSACourseWork.UI
                     {
                         for (int j = 0; j < V; j++)
                         {
-                            // not in selected and there is an edge
+                            
                             if (!selected[j] && G[i,j] != 0)
                             {
                                 if (min > G[i,j])
@@ -80,7 +66,7 @@ namespace PDSACourseWork.UI
 
                 string[] strRow = new string[] { "City "+fromVertex.ToString(), "City "+toVertex.ToString(), G[x,y].ToString() };
 
-                //adding rows in the datagridview
+                
                 dataGridView3.Rows.Add(strRow);
 
                 //Console.WriteLine(fromVertex + " - " + toVertex + " :  " + G[x][y]);
@@ -106,6 +92,8 @@ namespace PDSACourseWork.UI
 
         public void loadData()
         {
+            button2.Enabled = true;
+            txtName.Text = "";
             dataGridView3.Visible = false;
             label6.Visible = false;
             dataGridView3.Rows.Clear();
@@ -274,6 +262,8 @@ namespace PDSACourseWork.UI
                         dataGridView3.Visible = true;
                         label6.Visible = true;
 
+                        button2.Enabled = false;
+
                     }
                     else
                     {
@@ -291,6 +281,8 @@ namespace PDSACourseWork.UI
 
                         MessageBox.Show("Answer is Correct");
                         //InsertWinnerConnectorPaths
+
+                        button2.Enabled = false;
                     }
                 }
                 else
@@ -298,6 +290,8 @@ namespace PDSACourseWork.UI
                     MessageBox.Show("Submitted Anwser is Wrong");
                     dataGridView3.Visible = true;
                     label6.Visible = true;
+
+                    button2.Enabled = false;
                 }
 
             }
