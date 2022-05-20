@@ -1,6 +1,6 @@
 ﻿namespace PDSACourseWork.Helper
 {
-    internal class EightQueenHelper
+    public class EightQueenHelper
     {
         public static bool CompareLists(List<string> playerList, List<string> possibilityList)
         {

@@ -22,53 +22,45 @@ namespace PDSACourseWork.UI
             dt.Columns.Add("Possibilities", typeof(String));
 
             const int MaxN = 20;
-            int[] M = new int[MaxN]; // the array of placements
-            int p; // queen number
-            int k; // number of placement options
+            int[] M = new int[MaxN]; 
+            int p; 
+            int k; 
 
-            //// get the number of queens
-            //int N = 8;
-
-
-            // THE ALGORITHM FOR GENERATING PLACEMENTS
-            // initial settings
             p = 1;
             M[p] = 0;
             M[0] = 0;
             k = 0;
 
-            // the cycle of placements search
-            while (p > 0) // if p==0, then exit from the loop
+            while (p > 0) 
             {
                 M[p] = M[p] + 1;
-                if (p == N) // last item
+                if (p == N) 
                 {
                     if (M[p] > N)
                     {
-                        while (M[p] > N) p--; // rewind
+                        while (M[p] > N) p--; 
                     }
                     else
                     {
                         if (!Strike(M, p))
                         {
-                            // fix placement
                             AddToDataTable(M, N);
                             k++;
                             p--;
                         }
                     }
                 }
-                else // not the last item
+                else 
                 {
                     if (M[p] > N)
                     {
-                        while (M[p] > N) p--; // rewind
+                        while (M[p] > N) p--; 
                     }
                     else
                     {
-                        if (!Strike(M, p)) // If M[p] does not overlap with previous M[1], M[2], ..., M[p-1]
+                        if (!Strike(M, p))
                         {
-                            p++; // go to the placement of the next queen
+                            p++; 
                             M[p] = 0;
                         }
                     }
@@ -217,9 +209,9 @@ namespace PDSACourseWork.UI
 
             string playerName = PlayerNameTextBox.Text;
 
-            if (count == 8)
+            if (count == 8) // Validate user must place 8 queens
             {
-                if (!string.IsNullOrEmpty(playerName) && !string.IsNullOrWhiteSpace(playerName))
+                if (!string.IsNullOrEmpty(playerName) && !string.IsNullOrWhiteSpace(playerName))    // Validate user must provide a name
                 {
                     List<string> possitionList = new();
 
@@ -360,12 +352,10 @@ namespace PDSACourseWork.UI
             }
         }
 
-        // write string to datatble
         void AddToDataTable(int[] M, int N)
         {
             DataRow rw = dt.NewRow();
 
-            // add string to data Table
             string s = "";
             for (int i = 1; i <= N; i++)
                 s = s + M[i].ToString() + "," + i.ToString() + (i == 8 ? "" : "-");
@@ -373,17 +363,12 @@ namespace PDSACourseWork.UI
             dt.Rows.Add(rw);
         }
 
-        // Checking if 2 queens are beating. It returns false if they are not beating
         bool IsStrike(int x1, int y1, int x2, int y2)
         {
-            // 1. Horizontal, vertical
-            // Queens beat each other if the corresponding 2 parameters match
             if ((x1 == x2) || (y1 == y2)) return true;
 
-            // 2. Main diagonal
-            int tx, ty; // additional variables
+            int tx, ty; 
 
-            // 2.1. Left-Up
             tx = x1 - 1; ty = y1 - 1;
             while ((tx >= 1) && (ty >= 1))
             {
@@ -391,7 +376,6 @@ namespace PDSACourseWork.UI
                 tx--; ty--;
             }
 
-            // 2.2. Right-Down
             tx = x1 + 1; ty = y1 + 1;
             while ((tx <= N) && (ty <= N))
             {
@@ -399,8 +383,6 @@ namespace PDSACourseWork.UI
                 tx++; ty++;
             }
 
-            // 3. Additional diagonal
-            // 3.1. Right-Up
             tx = x1 + 1; ty = y1 - 1;
             while ((tx <= N) && (ty >= 1))
             {
@@ -408,7 +390,6 @@ namespace PDSACourseWork.UI
                 tx++; ty--;
             }
 
-            // 3.2. Left-Down
             tx = x1 - 1; ty = y1 + 1;
             while ((tx >= 1) && (ty <= N))
             {
@@ -418,9 +399,6 @@ namespace PDSACourseWork.UI
             return false;
         }
 
-        // Checking whether the last element M [p]is superimposed
-        // with elements M[1], M[2], ..., M[p-1].
-        // This function uses the IsStrike() function.
         bool Strike(int[] M, int p)
         {
             int px, py, x, y;
@@ -436,6 +414,7 @@ namespace PDSACourseWork.UI
                 if (IsStrike(x, y, px, py))
                     return true;
             }
+
             return false;
         }
     }
