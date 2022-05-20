@@ -333,9 +333,11 @@ namespace PDSACourseWork.UI
             label32.Font = new Font("Arial", 12, FontStyle.Bold);
             label33.Font = new Font("Arial", 12, FontStyle.Bold);
 
-
-
-            if (label1.Text == "Correct" && label15.Text == "Correct" && label16.Text == "Correct" && label17.Text == "Correct" && label18.Text == "Correct" && label19.Text == "Correct" && label20.Text == "Correct" && label21.Text == "Correct" && label22.Text == "Correct" && label23.Text == "Correct")
+            if(textBox21.Text == "")
+            {
+                MessageBox.Show("Please enter the player name", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else if (label1.Text == "Correct" && label15.Text == "Correct" && label16.Text == "Correct" && label17.Text == "Correct" && label18.Text == "Correct" && label19.Text == "Correct" && label20.Text == "Correct" && label21.Text == "Correct" && label22.Text == "Correct" && label23.Text == "Correct")
             {
 
 
