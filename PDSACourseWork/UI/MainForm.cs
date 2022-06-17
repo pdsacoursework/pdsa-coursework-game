@@ -66,5 +66,10 @@ namespace PDSACourseWork.UI
             panel.Controls.Add(minConnectorForm);
             minConnectorForm.Show();
         }
+
+        private void ShortPathBtn_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
