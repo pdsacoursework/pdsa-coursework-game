@@ -8,7 +8,7 @@ namespace PDSACourseWork.UI
     {
         DataTable dt = new DataTable();
         int count = 0;
-        int N = 8;
+        int N = 8;  // No of queens
 
         public ChessBoardForm()
         {
